@@ -6,7 +6,7 @@ test.beforeEach(async ({ page, user }) => {
   await signUpUser(page, user);
 });
 
-test('Creat an article without required fields', async ({
+test('Create an article without required fields', async ({
   homePage,
   createArticlePage,
 }) => {
