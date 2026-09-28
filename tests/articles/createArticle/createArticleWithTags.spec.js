@@ -4,6 +4,7 @@ import { signUpUser } from '../../../src/ui/actions/auth/signUpUser';
 
 const testParameters = [
   { tagsNumber: 1, testNameEnding: 'one tag' },
+  
   { tagsNumber: 2, testNameEnding: 'two tags' },
   { tagsNumber: 10, testNameEnding: 'ten tags' },
 ];
