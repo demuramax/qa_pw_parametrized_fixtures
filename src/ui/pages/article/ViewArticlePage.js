@@ -62,9 +62,11 @@ export class ViewArticlePage {
     });
   }
 
-  async assertArticleHasNoTags() {
-    await this.step(`Assert the article has no tags`, async () => {
-      await expect(this.page.locator('.tag-list li')).toHaveCount(0);
+  async assertArticleTagsAreNotVisible(tags) {
+    await this.step(`Assert the article tags are removed`, async () => {
+      for (const tag of tags) {
+        await expect(this.tagListItem(tag)).toBeHidden();
+      }
     });
   }
 
