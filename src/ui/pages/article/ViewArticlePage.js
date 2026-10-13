@@ -62,6 +62,12 @@ export class ViewArticlePage {
     });
   }
 
+  async assertArticleHasNoTags() {
+    await this.step(`Assert the article has no tags`, async () => {
+      await expect(this.page.locator('.tag-list li')).toHaveCount(0);
+    });
+  }
+
   async clickEditArticleButton() {
     await this.step(`Click the 'Edit Article' button`, async () => {
       await this.editArticleButtonBanner.click();

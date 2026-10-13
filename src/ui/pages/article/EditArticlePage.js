@@ -9,6 +9,7 @@ export class EditArticlePage {
     this.updateArticleButton = page.getByRole('button', { name: 'Update Article' });
     this.removeTagButton = page.locator('form i').first(); 
     this.tagLabel = page.locator('[class="tag-default tag-pill"]');
+    this.tagField = page.getByPlaceholder('Enter tags');
   }
 
   async step(title, stepToRun) {
@@ -39,6 +40,13 @@ export class EditArticlePage {
   async removeTag() {
     await this.step(`Remove the tag`, async () => {
         await this.removeTagButton.click();
+    });
+  }
+
+  async addTag(tag) {
+    await this.step(`Add the '${tag}' tag`, async () => {
+      await this.tagField.fill(tag);
+      await this.page.keyboard.press('Enter');
     });
   }
 
