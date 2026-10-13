@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { expect, testStep } from '../../../common/pwHelpers/pw';
 
 export class ViewArticlePage {
@@ -5,6 +6,9 @@ export class ViewArticlePage {
     this.page = page;
     this.userId = userId;
     this.articleTitleHeader = page.getByRole('heading');
+    this.editArticleButtonBanner = page.getByRole('link', { name: ' Edit Article' }).first();
+    this.favoriteArticleButton = page.getByRole('button').filter({ hasText: 'Favorite Article'}).first();
+    this.homeLink = page.getByRole('link', { name: 'Home' });
   }
 
   authorLinkInArticleHeader(username) {
@@ -57,4 +61,27 @@ export class ViewArticlePage {
       }
     });
   }
+
+  async clickEditArticleButton() {
+    await this.step(`Click the 'Edit Article' button`, async () => {
+      await this.editArticleButtonBanner.click();
+    });
+  }
+
+  authorFollowHeaderButton(username) { 
+    return this.page.getByRole('button', { name: `   Follow ${username}` }).first()
+  }
+
+  async followAuthorProfile(username) {
+    await this.step(`Click Follow ${username} profile in the header`, async () => {
+      await this.authorFollowHeaderButton(username).click();
+    });
+  }
+
+  async goToHomeLink() {
+    await this.step(`Go to Home link in the header`, async () => {
+      await this.homeLink.click();
+    });
+  }
+
 }

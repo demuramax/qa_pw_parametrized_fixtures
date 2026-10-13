@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { expect, testStep } from '../../common/pwHelpers/pw';
 
 export class HomePage {
@@ -21,6 +22,17 @@ export class HomePage {
   async assertYourFeedTabIsVisible() {
     await this.step(`Assert the 'Your Feed' tab is visible`, async () => {
       await expect(this.yourFeedTab).toBeVisible();
+    });
+  }
+
+  articleCard(title) {
+    return this.page.locator(".article-preview").filter({ hasText: `Article title: ${title}` });
+  }
+
+  async assertArticleInFeedIsVisible(articleTitle, authorName) {
+    await this.step(`Assert the article with title '${articleTitle}' by ${authorName} is visible in the global feed`, async () => {
+      await expect(this.articleCard(articleTitle)).toBeVisible();
+      await expect(this.articleCard(articleTitle).getByRole('link', { name: authorName })).toBeVisible();
     });
   }
 }
