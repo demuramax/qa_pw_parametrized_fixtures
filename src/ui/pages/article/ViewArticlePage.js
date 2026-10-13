@@ -62,14 +62,6 @@ export class ViewArticlePage {
     });
   }
 
-  async assertArticleTagsAreNotVisible(tags) {
-    await this.step(`Assert the article tags are removed`, async () => {
-      for (const tag of tags) {
-        await expect(this.tagListItem(tag)).toBeHidden();
-      }
-    });
-  }
-
   async clickEditArticleButton() {
     await this.step(`Click the 'Edit Article' button`, async () => {
       await this.editArticleButtonBanner.click();

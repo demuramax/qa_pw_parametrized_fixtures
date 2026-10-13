@@ -39,7 +39,9 @@ testParameters.forEach(({ tagsNumber, testNameEnding }) => {
       await viewArticlePage.clickEditArticleButton();
       await editArticlePage.removeAllTags();
       await editArticlePage.clickUpdateArticleButton();
-      await viewArticlePage.assertArticleTagsAreNotVisible(article.tags);
+
+      await viewArticlePage.clickEditArticleButton();
+      await editArticlePage.assertNoTagsPresent();
     });
   });
 });

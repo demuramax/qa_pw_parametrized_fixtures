@@ -7,7 +7,7 @@ export class EditArticlePage {
     this.userId = userId;
     this.articleTitleHeader = page.getByRole('heading');
     this.updateArticleButton = page.getByRole('button', { name: 'Update Article' });
-    this.removeTagButton = page.locator('form i').first(); 
+    this.removeTagButton = page.locator('form i').first();
     this.tagLabel = page.locator('[class="tag-default tag-pill"]');
     this.tagField = page.getByPlaceholder('Enter tags');
   }
@@ -31,7 +31,7 @@ export class EditArticlePage {
 
   async clickUpdateArticleButton() {
     await this.step(`Click the 'Update Article' button`, async () => {
-      await this.updateArticleButton.click(); 
+      await this.updateArticleButton.click();
       await expect(this.updateArticleButton).toBeHidden();
       await this.page.reload();
     });
@@ -63,4 +63,10 @@ export class EditArticlePage {
       await expect(this.tagLabel).not.toContainText(tag);
     });
   } 
+
+  async assertNoTagsPresent() {
+    await this.step(`Assert the article has no tags in the edit form`, async () => {
+      await expect(this.tagLabel).toHaveCount(0);
+    });
+  }
 }
